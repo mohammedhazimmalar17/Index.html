@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Love Tree</title>
+<style>
+body {
+  margin: 0;
+  background: #0a0a0a;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial;
+}
+
+.scene {
+  position: relative;
+  width: 320px;
+  height: 420px;
+}
+
+.trunk {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 18px;
+  height: 0;
+  background: linear-gradient(#8b5a2b, #5a381e);
+  transform: translateX(-50%);
+  border-radius: 10px;
+  transition: height 2.5s ease;
+}
+
+.branch {
+  position: absolute;
+  width: 6px;
+  height: 0;
+  background: #5a381e;
+  bottom: 200px;
+  transform-origin: bottom;
+  transition: height 1.5s ease;
+}
+
+.b1 { left: 50%; transform: rotate(-35deg); }
+.b2 { left: 50%; transform: rotate(35deg); }
+
+.leaf {
+  position: absolute;
+  font-size: 22px;
+  opacity: 0;
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.message {
+  position: absolute;
+  right: -130px;
+  top: 140px;
+  font-size: 22px;
+  color: pink;
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+button {
+  position: absolute;
+  bottom: -55px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 22px;
+  border: none;
+  border-radius: 20px;
+  background: crimson;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="scene">
+  <div class="trunk" id="trunk"></div>
+
+  <div class="branch b1" id="branch1"></div>
+  <div class="branch b2" id="branch2"></div>
+
+  <!-- Heart leaves -->
+  <div class="leaf" style="left:120px; top:120px;">❤️</div>
+  <div class="leaf" style="left:90px; top:140px;">💗</div>
+  <div class="leaf" style="left:150px; top:140px;">💖</div>
+  <div class="leaf" style="left:70px; top:110px;">💘</div>
+  <div class="leaf" style="left:180px; top:110px;">❤️</div>
+
+  <div class="message" id="msg">Miss uh ❤️</div>
+
+  <button onclick="grow()">Grow Tree 🌱</button>
+</div>
+
+<script>
+function grow() {
+  document.getElementById("trunk").style.height = "260px";
+
+  setTimeout(() => {
+    document.getElementById("branch1").style.height = "90px";
+    document.getElementById("branch2").style.height = "90px";
+  }, 1200);
+
+  const leaves = document.querySelectorAll(".leaf");
+  leaves.forEach((leaf, i) => {
+    setTimeout(() => {
+      leaf.style.opacity = "1";
+      leaf.style.transform = "scale(1.3)";
+    }, 2200 + i * 300);
+  });
+
+  setTimeout(() => {
+    document.getElementById("msg").style.opacity = "1";
+  }, 3800);
+}
+</script>
+
+</body>
+</html>
